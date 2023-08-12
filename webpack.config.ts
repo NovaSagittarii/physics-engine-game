@@ -11,14 +11,24 @@ const __dirname = dirname(__filename);
 
 const config: webpack.Configuration = {
   mode: 'development',
-  entry: './index.ts',
-  externals: [],
+  entry: './src/server/index.ts',
+  externals: [
+    // webpackNodeExternals(),
+  ],
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },
+      {
+        // Transpiles ES6-8 into ES5
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
       },
     ],
   },
