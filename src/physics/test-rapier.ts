@@ -1,7 +1,7 @@
 // import this to make sure rapier can be used
 console.log('testing rapier ...');
 
-import { Wall, Rapier } from "../index";
+import { Wall, Rapier } from '.';
 
 const world = new Rapier.World({ x: 0, y: 0 });
 let walls = [

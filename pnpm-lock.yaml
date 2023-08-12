@@ -64,6 +64,9 @@ devDependencies:
   html-webpack-plugin:
     specifier: ^5.5.3
     version: 5.5.3(webpack@5.88.2)
+  prettier:
+    specifier: ^3.0.1
+    version: 3.0.1
   ts-loader:
     specifier: ^9.4.4
     version: 9.4.4(typescript@5.1.6)(webpack@5.88.2)
@@ -2874,6 +2877,12 @@ packages:
     engines: {node: '>=14.16'}
     dependencies:
       find-up: 6.3.0
+    dev: true
+
+  /prettier@3.0.1:
+    resolution: {integrity: sha512-fcOWSnnpCrovBsmFZIGIy9UqK2FaI7Hqax+DIO0A9UxeVoY4iweyaFjS5TavZN97Hfehph0nhsZnjlVKzEQSrQ==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /pretty-error@4.0.0:

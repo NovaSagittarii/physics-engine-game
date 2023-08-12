@@ -10,11 +10,11 @@ const __dirname = dirname(__filename);
 
 const config: webpack.Configuration = {
   mode: 'development',
-  entry: "./src/client/index.tsx",
+  entry: './src/client/index.tsx',
   output: {
     path: path.join(__dirname, 'dist/public'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: '[name].js',
   },
   target: 'web',
   devtool: 'source-map',
@@ -29,10 +29,10 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/client/index.html",
-      filename: "./index.html",
-      excludeChunks: [ 'server' ]
-    })
+      template: './src/client/index.html',
+      filename: './index.html',
+      excludeChunks: ['server'],
+    }),
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
