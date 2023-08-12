@@ -1,0 +1,26 @@
+{
+  "name": "physics-engine-game",
+  "version": "0.0.1",
+  "description": "tryin to make another game but more complex than the last one",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "NODE_OPTIONS=--loader=ts-node/esm webpack",
+    "start": "npm run build && node dist/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NovaSagittarii",
+  "license": "ISC",
+  "dependencies": {
+    "@dimforge/rapier2d-compat": "^0.11.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.10",
+    "@types/webpack": "^5.28.1",
+    "ts-loader": "^9.4.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
