@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import webpackNodeExternals from 'webpack-node-externals';
 // in case you run into any typescript error when configuring `devServer`
 // import 'webpack-dev-server';
 
@@ -11,6 +12,7 @@ const __dirname = dirname(__filename);
 const config: webpack.Configuration = {
   mode: 'development',
   entry: './index.ts',
+  externals: [],
   module: {
     rules: [
       {
@@ -23,9 +25,14 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+  target: 'node',
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.cjs',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+  },
+  experiments: {
+    asyncWebAssembly: true,
   },
 };
 

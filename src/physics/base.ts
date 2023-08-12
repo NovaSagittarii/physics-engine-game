@@ -1,5 +1,4 @@
-import RAPIER from '@dimforge/rapier2d-compat';
-import { Rapier } from './rapier';
+import { RAPIER, Rapier } from './rapier';
 
 export class Entity {}
 export class ImmovableObject {

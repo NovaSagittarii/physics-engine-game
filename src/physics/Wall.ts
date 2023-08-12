@@ -1,6 +1,5 @@
-import RAPIER from "@dimforge/rapier2d-compat";
+import { RAPIER, Rapier } from './rapier';
 import { ImmovableObject } from './base';
-import { Rapier } from "./rapier";
 
 export class Wall extends ImmovableObject {
   public readonly x: number;

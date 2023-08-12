@@ -1,5 +1,4 @@
 import { Wall, Rapier } from "./src";
-import RAPIER from '@dimforge/rapier2d-compat';
 
 const world = new Rapier.World({ x: 0, y: 0 });
 let walls = [
