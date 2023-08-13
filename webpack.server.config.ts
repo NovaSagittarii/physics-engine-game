@@ -4,76 +4,23 @@ import webpackNodeExternals from 'webpack-node-externals';
 // in case you run into any typescript error when configuring `devServer`
 // import 'webpack-dev-server';
 
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import WebpackBar from 'webpackbar';
-
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const config: webpack.Configuration = {
-  cache: {
-    type: 'filesystem',
-    allowCollectingMemory: true,
-    // compression: 'gzip',
-  },
-  mode: 'development',
   entry: './src/server/index.ts',
-  externals: [
-    // webpackNodeExternals(),
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            // transpileOnly: true,
-          },
-        },
-      },
-      // {
-      //   // Transpiles ES6-8 into ES5
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //   },
-      // },
-    ],
+  externals: {
+    // related to express warning, something about request critical dependency
+    // https://stackoverflow.com/a/68386977/21507383
+    express: 'require("express")',
+    // webpackNodeExternals(), // this doesnt fix it (idk why)
   },
-  plugins: [
-    // new ForkTsCheckerWebpackPlugin(),
-    new WebpackBar(),
-  ],
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  target: 'node',
   output: {
     filename: '[name].bundle.cjs',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    // clean: true,
-  },
-  experiments: {
-    asyncWebAssembly: true,
-  },
-  optimization: {
-    moduleIds: 'deterministic',
-    runtimeChunk: true,
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    },
   },
 };
 
