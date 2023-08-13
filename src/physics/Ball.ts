@@ -1,4 +1,4 @@
-import { RAPIER, Rapier } from './rapier';
+import { type RAPIER, Rapier } from './rapier';
 import { MovableObject } from './base';
 
 export class Ball extends MovableObject {

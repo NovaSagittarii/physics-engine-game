@@ -5,8 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import ReactApp from './App';
 
-import '../physics/test-rapier';
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );

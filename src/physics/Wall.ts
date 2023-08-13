@@ -1,4 +1,4 @@
-import { RAPIER, Rapier } from './rapier';
+import { type RAPIER, Rapier } from './rapier';
 import { ImmovableObject } from './base';
 
 export class Wall extends ImmovableObject {
