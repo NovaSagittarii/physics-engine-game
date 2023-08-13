@@ -11,10 +11,7 @@ const __dirname = dirname(__filename);
 const config: webpack.Configuration = {
   cache: true,
   mode: 'development',
-  entry: [
-    'react-hot-loader/patch',
-    './src/client/index.tsx',
-  ],
+  entry: ['react-hot-loader/patch', './src/client/index.tsx'],
   output: {
     path: path.join(__dirname, 'dist/public'),
     publicPath: '/',

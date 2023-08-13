@@ -38,13 +38,26 @@ const config: webpack.Configuration = {
   },
   target: 'node',
   output: {
-    filename: 'bundle.cjs',
+    filename: '[name].bundle.cjs',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     clean: true,
   },
   experiments: {
     asyncWebAssembly: true,
+  },
+  optimization: {
+    moduleIds: 'deterministic',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
 };
 
