@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS=--loader=ts-node/esm webpack-dev-server --hot --config webpack.client.dev.config.ts",
     "build": "rm -rf dist/ && NODE_OPTIONS=--loader=ts-node/esm webpack --config webpack.server.config.ts && NODE_OPTIONS=--loader=ts-node/esm webpack --config webpack.client.config.ts",
-    "start": "(cd dist && node bundle.cjs)",
+    "start": "(cd dist && node main.bundle.cjs)",
     "format": "npx prettier --write .",
     "check": "npx prettier --check .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,12 +16,17 @@
   "license": "ISC",
   "dependencies": {
     "@dimforge/rapier2d": "^0.11.2",
+    "@react-three/drei": "^9.80.2",
+    "@react-three/fiber": "^8.13.6",
+    "@types/three": "^0.155.0",
     "express": "^4.18.2",
     "http": "0.0.1-security",
+    "r3f-perf": "^7.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "socket.io": "^4.7.2",
-    "socket.io-client": "^4.7.2"
+    "socket.io-client": "^4.7.2",
+    "three": "^0.155.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.10",

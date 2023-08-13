@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { EVENTS } from '../Events';
 import { Rapier } from '../physics';
+import { AppCanvas } from './components/Screen';
 
 let lastSent = performance.now();
 // const socket = new WebSocket('ws://localhost:3000/socket.io/?EIO=4&transport=websocket');
@@ -47,22 +48,18 @@ export default function ReactApp() {
     }, 50);
   }, []);
 
-  // this is HOT GARBAGE but i reallly just wanted to verify that ANY form of knowing the server and physics worked
   return (
     <>
-      <h1 onClick={() => socket.emit(EVENTS.MOVE)}>Hello, world</h1>
-      <div style={{ overflow: 'none', transform: 'scale(1)' }}>
-        {state.map(([x, y], index) => (
-          <div
-            style={{
-              position: 'absolute',
-              transform: `translate(${200 + x * 10}px, ${200 + y * 10}px)`,
-            }}
-            key={index}
-          >
-            A
-          </div>
-        ))}
+      <div
+        style={{
+          position: 'fixed',
+          width: '100vw',
+          height: '100vh',
+          margin: '0',
+        }}
+        onClick={() => socket.emit(EVENTS.MOVE)}
+      >
+        <AppCanvas locations={state} />
       </div>
     </>
   );
