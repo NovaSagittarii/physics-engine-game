@@ -3,6 +3,7 @@ import webpack from 'webpack';
 
 import HtmlWebPackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import WebpackBar from 'webpackbar';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -46,6 +47,7 @@ const config: webpack.Configuration = {
       excludeChunks: ['server'],
     }),
     // new ForkTsCheckerWebpackPlugin(),
+    new WebpackBar(),
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],

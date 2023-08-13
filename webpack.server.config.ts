@@ -5,6 +5,7 @@ import webpackNodeExternals from 'webpack-node-externals';
 // import 'webpack-dev-server';
 
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import WebpackBar from 'webpackbar';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -46,6 +47,7 @@ const config: webpack.Configuration = {
   },
   plugins: [
     // new ForkTsCheckerWebpackPlugin(),
+    new WebpackBar(),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "NODE_OPTIONS=--loader=ts-node/esm webpack-dev-server --hot --config webpack.client.dev.config.ts",
-    "build": "rm -rf dist/ && NODE_OPTIONS=--loader=ts-node/esm webpack --config webpack.server.config.ts && NODE_OPTIONS=--loader=ts-node/esm webpack --config webpack.client.config.ts",
+    "build": "NODE_OPTIONS=--loader=ts-node/esm webpack --config webpack.build.config.ts",
     "start": "(cd dist && node main.bundle.cjs)",
     "format": "npx prettier --write .",
     "check": "npx prettier --check .",
@@ -38,10 +38,12 @@
     "@types/react-dom": "^18.2.7",
     "@types/webpack": "^5.28.1",
     "@types/webpack-node-externals": "^3.0.0",
+    "@types/webpackbar": "^4.0.3",
     "babel-loader": "^9.1.3",
     "bufferutil": "^4.0.7",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.5.3",
+    "node-ts": "^6.0.1",
     "prettier": "^3.0.1",
     "react-hot-loader": "^4.13.1",
     "ts-loader": "^9.4.4",
@@ -52,6 +54,7 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "webpackbar": "^5.0.2"
   }
 }
