@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "NODE_OPTIONS=--loader=ts-node/esm webpack-dev-server --hot --config webpack.client.dev.config.ts",
     "build": "rm -rf dist/ && NODE_OPTIONS=--loader=ts-node/esm webpack --config webpack.server.config.ts && NODE_OPTIONS=--loader=ts-node/esm webpack --config webpack.client.config.ts",
     "start": "(cd dist && node bundle.cjs)",
     "format": "npx prettier --write .",
@@ -36,6 +37,7 @@
     "bufferutil": "^4.0.7",
     "html-webpack-plugin": "^5.5.3",
     "prettier": "^3.0.1",
+    "react-hot-loader": "^4.13.1",
     "ts-loader": "^9.4.4",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
@@ -43,6 +45,7 @@
     "web-vitals": "^3.4.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
     "webpack-node-externals": "^3.0.0"
   }
 }

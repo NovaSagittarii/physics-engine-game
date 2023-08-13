@@ -10,6 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const config: webpack.Configuration = {
+  cache: true,
   mode: 'development',
   entry: './src/server/index.ts',
   externals: [
@@ -40,6 +41,7 @@ const config: webpack.Configuration = {
     filename: 'bundle.cjs',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
+    clean: true,
   },
   experiments: {
     asyncWebAssembly: true,
