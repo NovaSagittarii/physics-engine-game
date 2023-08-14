@@ -6,6 +6,7 @@ import webpackNodeExternals from 'webpack-node-externals';
 
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import WebpackBar from 'webpackbar';
+import ESLintPlugin from 'eslint-webpack-plugin';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -47,6 +48,10 @@ const config: webpack.Configuration = {
   plugins: [
     // new ForkTsCheckerWebpackPlugin(),
     new WebpackBar(),
+    new ESLintPlugin({
+      cache: true,
+      extensions: ['ts', 'tsx', 'js', 'jsx'],
+    }),
   ],
   resolve: {
     extensions: ['.ts', '.js'],
@@ -56,7 +61,7 @@ const config: webpack.Configuration = {
     filename: '[name].bundle.cjs',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    // clean: true,
+    clean: true,
   },
   experiments: {
     asyncWebAssembly: true,
