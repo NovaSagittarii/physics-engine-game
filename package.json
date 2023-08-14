@@ -10,6 +10,7 @@
     "start": "(cd dist && node main.bundle.cjs)",
     "format": "npx prettier --write .",
     "check": "npx prettier --check .",
+    "lint": "eslint . --cache --cache-location ./node_modules/.cache/eslint-webpack-plugin/.eslintcache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "NovaSagittarii",
