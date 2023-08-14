@@ -1,9 +1,7 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Perf } from 'r3f-perf';
-import {
-  MapControls,
-} from '@react-three/drei';
+import { MapControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 const temp = new THREE.Object3D();

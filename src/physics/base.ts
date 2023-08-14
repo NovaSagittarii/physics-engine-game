@@ -87,6 +87,30 @@ export class MovableObject extends DisposableColliderEntity {
   }
 }
 
-export function Vector2FromPolar(r: number, theta: number) {
+const { PI } = Math;
+const TWO_PI = 2 * PI;
+export type Vector2Like = { x: number; y: number };
+export type radians = number;
+
+export function Vector2FromPolar(r: radians, theta: number) {
   return new Rapier.Vector2(r * Math.cos(theta), r * Math.sin(theta));
+}
+
+export function angleDifference(a1: radians, a2: radians) {
+  a1 = ((a1 % TWO_PI) + TWO_PI) % TWO_PI;
+  a2 = ((a2 % TWO_PI) + TWO_PI) % TWO_PI;
+  const da = Math.abs(a1 - a2);
+  return Math.min(da, PI - da);
+}
+
+export function Vector2Subtract(a: Vector2Like, b: Vector2Like) {
+  return new Rapier.Vector2(a.x - b.x, a.y - b.y);
+}
+
+export function Vector2Angle(a: Vector2Like) {
+  return Math.atan2(a.y, a.x);
+}
+
+export function Vector2Magnitude(a: Vector2Like) {
+  return Math.hypot(a.x, a.y);
 }

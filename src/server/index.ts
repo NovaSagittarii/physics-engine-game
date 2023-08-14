@@ -37,7 +37,12 @@ io.on('connection', (socket) => {
   console.log(socket.id, 'connect');
 
   {
-    const ball = new MovableBall(world, Math.random() * 10, Math.random() * 10, 1);
+    const ball = new MovableBall(
+      world,
+      Math.random() * 10,
+      Math.random() * 10,
+      1,
+    );
     balls.set(socket.id, ball);
   }
   io.emit(EVENTS.LOAD, world.takeSnapshot());
