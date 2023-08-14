@@ -1,7 +1,7 @@
 import { type RAPIER, Rapier } from './rapier';
 import { MovableObject } from './base';
 
-export class Ball extends MovableObject {
+export class MovableBall extends MovableObject {
   protected x: number;
   protected y: number;
   public readonly radius: number;

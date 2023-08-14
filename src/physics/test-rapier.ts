@@ -4,7 +4,7 @@ console.log('testing rapier ...');
 import { Wall, Rapier } from '.';
 
 const world = new Rapier.World({ x: 0, y: 0 });
-let walls = [
+const walls = [
   // {x: 0, y: -5, w: 20, h: 10}, // inner container
   // {x: -10, y: 5, w: 1, h: 10},
   // {x: 10, y: 5, w: 1, h: 10},
