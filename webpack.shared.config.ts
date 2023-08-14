@@ -17,6 +17,9 @@ const config: webpack.Configuration = {
     type: 'filesystem',
     // allowCollectingMemory: true,
     // compression: 'gzip',
+    buildDependencies: {
+      config: [__filename],
+    },
   },
   mode: 'development',
   module: {

@@ -10,6 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const config: webpack.Configuration = {
+  name: 'server',
   entry: './src/server/index.ts',
   externals: {
     // related to express warning, something about request critical dependency
