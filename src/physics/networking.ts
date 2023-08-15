@@ -46,6 +46,13 @@ export function append(
   return combinedBuffer;
 }
 
+export function extract_back(buffer: ArrayBufferLike, size: number): [ArrayBufferLike, DataView] {
+  const remainingBuffer = buffer.slice(0, buffer.byteLength-size);
+  const backBuffer = buffer.slice(buffer.byteLength-size);
+  const view = new DataView(backBuffer);
+  return [ remainingBuffer, view ];
+}
+
 export function printBuffer(buffer: ArrayBufferLike) {
   console.log(bufferHex(buffer));
 }
@@ -54,4 +61,10 @@ export function bufferHex(buffer: ArrayBufferLike) {
   return [...new Uint8Array(buffer)]
     .map((x) => x.toString(16).toUpperCase().padStart(2, '0'))
     .join(' ');
+}
+
+export function abv(size: number): [ArrayBuffer, DataView] {
+  const buffer = new ArrayBuffer(size);
+  const view = new DataView(buffer);
+  return [buffer, view];
 }

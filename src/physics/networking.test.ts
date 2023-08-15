@@ -14,15 +14,13 @@ function arrayBufferEquality(
 }
 
 function abv_single(size: number, location: number): [ArrayBuffer, DataView] {
-  const buffer = new ArrayBuffer(size);
-  const view = new DataView(buffer);
+  const [buffer, view] = net.abv(size);
   view.setInt8(location >> 2, 1 << location % 4);
   return [buffer, view];
 }
 
 function abv_random(size: number): [ArrayBuffer, DataView] {
-  const buffer = new ArrayBuffer(size);
-  const view = new DataView(buffer);
+  const [buffer, view] = net.abv(size);
   for (let i = 0; i < size; i++) view.setInt8(i, ~~(Math.random() * 256));
   return [buffer, view];
 }

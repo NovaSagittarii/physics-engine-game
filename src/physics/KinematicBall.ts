@@ -1,13 +1,15 @@
 import { type RAPIER } from './rapier';
-import { MovableBall } from './MovableBall';
+import { MovableBall, MovableBallDecode } from './MovableBall';
 import {
+  Serializable,
   Vector2Angle,
   Vector2FromPolar,
   Vector2Magnitude,
   Vector2Subtract,
 } from './base';
+import * as net from './networking';
 
-export class KinematicBall extends MovableBall {
+export class KinematicBall extends MovableBall implements Serializable {
   private initialX: number;
   private initialY: number;
   private goalX: number;
@@ -46,4 +48,40 @@ export class KinematicBall extends MovableBall {
       true,
     );
   }
+  
+  serialize(){
+    const [buffer, view] = net.abv(16);
+    view.setFloat32(0, this.initialX, true);
+    view.setFloat32(4, this.initialY, true);
+    view.setFloat32(8, this.goalX, true);
+    view.setFloat32(12, this.goalY, true);
+    return net.append(super.serialize(), buffer);
+  }
+  static deserialize(world: RAPIER.World, buffer: ArrayBufferLike){
+    const { movableBallProps, kinematicBallProps } = KinematicBallDecode(buffer);
+    const o = new KinematicBall(world, ...movableBallProps);
+    for(const k of ['goalY', 'goalX', 'initialY', 'initialX'] as KinematicBallProps[])
+      o[k] = kinematicBallProps[k];
+    return o;
+  }
 }
+
+export function KinematicBallDecode(buffer: ArrayBufferLike){
+  const props = {
+    initialX: 0,
+    initialY: 0,
+    goalX: 0,
+    goalY: 0,
+  };
+  let view: DataView;
+  for(const k of ['goalY', 'goalX', 'initialY', 'initialX'] as KinematicBallProps[]){
+    [buffer, view] = net.extract_back(buffer, 4); // maybe this not good to reassign?
+    props[k] = view.getFloat32(0, true);
+  }
+  return {
+    movableBallProps: MovableBallDecode(buffer),
+    kinematicBallProps: props,
+  };
+}
+
+export type KinematicBallProps = 'goalY' | 'goalX' | 'initialY' | 'initialX';

@@ -1,4 +1,3 @@
-import { printBuffer } from './networking';
 import { type RAPIER, Rapier } from './rapier';
 
 // TS has no static methods in interface or abstract static :sob:
@@ -56,7 +55,7 @@ export abstract class DisposableColliderEntity
     return buffer;
   }
 }
-export class ImmovableObject extends DisposableEntity implements Serializable {
+export class ImmovableObject extends DisposableEntity {
   protected collider: RAPIER.Collider;
   protected colliderDesc: RAPIER.ColliderDesc;
   constructor(world: RAPIER.World, colliderDesc: RAPIER.ColliderDesc) {
@@ -65,9 +64,10 @@ export class ImmovableObject extends DisposableEntity implements Serializable {
     this.collider = world.createCollider(this.colliderDesc);
   }
   serialize() {
-    const buffer = new ArrayBuffer(8);
-    new DataView(buffer).setFloat64(0, this.collider.handle, true);
-    return buffer;
+    // const buffer = new ArrayBuffer(8);
+    // new DataView(buffer).setFloat64(0, this.collider.handle, true);
+    // return buffer;
+    return new ArrayBuffer(0);
   }
 }
 export class MovableObject extends DisposableColliderEntity {
