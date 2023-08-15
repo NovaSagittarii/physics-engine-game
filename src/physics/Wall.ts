@@ -7,7 +7,6 @@ export class Wall extends ImmovableObject {
   public readonly w: number;
   public readonly h: number;
   constructor(world: RAPIER.World, x: number, y: number, w: number, h: number) {
-    console.log('aa');
     const colliderDesc = Rapier.ColliderDesc.cuboid(w / 2, h / 2);
     colliderDesc.setTranslation(x, y);
     colliderDesc.setRestitution(1);

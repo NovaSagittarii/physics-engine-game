@@ -11,7 +11,7 @@
     "format": "npx prettier --write .",
     "check": "npx prettier --check .",
     "lint": "eslint . --cache --cache-location ./node_modules/.cache/eslint-webpack-plugin/.eslintcache",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "author": "NovaSagittarii",
   "license": "ISC",
@@ -54,6 +54,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
     "utf-8-validate": "^5.0.10",
+    "vitest": "^0.34.1",
     "web-vitals": "^3.4.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",

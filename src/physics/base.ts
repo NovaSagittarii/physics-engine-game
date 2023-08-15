@@ -1,6 +1,15 @@
+import { printBuffer } from './networking';
 import { type RAPIER, Rapier } from './rapier';
 
-export default class DisposableEntity {
+// TS has no static methods in interface or abstract static :sob:
+export interface Serializable /*<T>*/ {
+  serialize(): ArrayBufferLike;
+  // static deserialize(data: ArrayBufferLike): T;
+  // static decode(data: ArrayBufferLike): any[];
+  // these *should* be there :^)
+}
+
+export class DisposableEntity {
   private alive: boolean;
   private disposed: boolean;
   protected world: RAPIER.World;
@@ -22,7 +31,10 @@ export default class DisposableEntity {
     return this.disposed;
   }
 }
-export class DisposableColliderEntity extends DisposableEntity {
+export abstract class DisposableColliderEntity
+  extends DisposableEntity
+  implements Serializable
+{
   private attachments: Map<number, DisposableColliderEntity>[];
   protected collider: RAPIER.Collider;
   constructor(world: RAPIER.World) {
@@ -38,14 +50,24 @@ export class DisposableColliderEntity extends DisposableEntity {
     dictionary.set(this.collider.handle, this);
     this.attachments.push(dictionary);
   }
+  serialize() {
+    const buffer = new ArrayBuffer(8);
+    new DataView(buffer).setFloat64(0, this.collider.handle, true);
+    return buffer;
+  }
 }
-export class ImmovableObject extends DisposableEntity {
+export class ImmovableObject extends DisposableEntity implements Serializable {
   protected collider: RAPIER.Collider;
   protected colliderDesc: RAPIER.ColliderDesc;
   constructor(world: RAPIER.World, colliderDesc: RAPIER.ColliderDesc) {
     super(world);
     this.colliderDesc = colliderDesc;
     this.collider = world.createCollider(this.colliderDesc);
+  }
+  serialize() {
+    const buffer = new ArrayBuffer(8);
+    new DataView(buffer).setFloat64(0, this.collider.handle, true);
+    return buffer;
   }
 }
 export class MovableObject extends DisposableColliderEntity {
@@ -63,6 +85,7 @@ export class MovableObject extends DisposableColliderEntity {
     this.rigidBody = world.createRigidBody(this.rigidBodyDesc);
     this.colliderDesc = colliderDesc;
     this.collider = world.createCollider(this.colliderDesc, this.rigidBody);
+    console.log(this.collider.handle);
   }
   getTranslation() {
     return this.rigidBody.translation();
